@@ -1,0 +1,88 @@
+public class ExceptionHandling {
+    public static void main(String[] args) {
+        System.out.println("Program start");
+
+        int num1 = 10;
+        try {
+            int num2 = num1 / 0;
+        } catch (ArithmeticException ex) {
+            System.out.println("Cannot divide by zero");
+        } finally {
+            System.out.println("Finally runs whether exception occurs or not");
+        }
+
+        int[] numA = new int[5];
+        numA[0] = 100;
+        try {
+            numA[100] = 1000; 
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Array is not long enough");
+        }
+
+        String data = null;
+        try {
+            System.out.println(data.length());
+        } catch (NullPointerException ex) {
+            System.out.println("Null value");
+        }
+
+        try {
+            int numMulti = 1000 / 0;
+            String d2 = null; 
+            System.out.println(d2.length());
+        } catch (ArithmeticException ex) {
+            System.out.println("Number error");
+        } catch (NullPointerException ex) {
+            System.out.println("Null ayo");
+        } finally {
+            System.out.println("Try end");
+        }
+
+        try {
+            int num3 = 10 / 0;
+            int[] numArr2 = new int[100];
+            numArr2[10000] = 10;
+        } catch (Exception ex) {
+            System.out.println("I catch all exceptions");
+        }
+
+        try {
+            int number1 = 10;
+            int number2 = number1 - 10;
+            int number3 = number1 / number2;
+        } catch (ArithmeticException ex) {
+            System.out.println("Cannot divide by zero in task");
+        }
+
+        try {
+            String name = null;
+            System.out.println(name.length()); 
+        } catch (NullPointerException ex) {
+            System.out.println("Null value in task");
+        }
+
+        try {
+            String[] names = new String[100];
+            names[0] = "Ram";
+            names[110] = "Shyam"; 
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Array is not long enough in task");
+        }
+      
+        try {
+            checkTry();
+        } catch (Exception e) {
+            System.out.println("Exception in checkTry");
+        }
+
+        System.out.println("Program end");
+    }
+
+    static void throwExample() {
+        throw new ArithmeticException("Where is the number?");
+    }
+
+    static void checkTry() throws Exception {
+        System.out.println("When running this function wrap around try-catch");
+    }
+}
