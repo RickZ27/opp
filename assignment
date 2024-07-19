@@ -1,0 +1,430 @@
+#qn1.
+public class Assignment {
+    private int studentID;
+    private String name;
+    private double GPA;
+
+    public Assignment(int studentID, String name, double GPA) {
+        this.studentID = studentID;
+        this.name = name;
+        this.GPA = GPA;
+    }
+
+    public void updateGPA(double newGPA) {
+        this.GPA = newGPA;
+    }
+
+    public void printProfile() {
+        System.out.println("Student ID: " + studentID);
+        System.out.println("Name: " + name);
+        System.out.println("GPA: " + GPA);
+    }
+
+    public static void main(String[] args) {
+        Assignment student1 = new Assignment(1, "John Doe", 3.5);
+        student1.printProfile();
+        student1.updateGPA(3.8);
+        student1.printProfile();
+    }
+}
+
+#qn2.
+public class Assignment {
+    private int accountNumber;
+    private String accountHolderName;
+    private double balance;
+
+    public Assignment(int accountNumber, String accountHolderName, double balance) {
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposited: " + amount);
+    }
+
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdrew: " + amount);
+        } else {
+            System.out.println("Insufficient funds.");
+        }
+    }
+
+    public void checkBalance() {
+        System.out.println("Balance: " + balance);
+    }
+
+    public static void main(String[] args) {
+        Assignment account1 = new Assignment(123456, "Jane Doe", 500.0);
+        account1.checkBalance();
+        account1.deposit(200.0);
+        account1.checkBalance();
+        account1.withdraw(100.0);
+        account1.checkBalance();
+    }
+}
+
+qn3.
+import java.util.ArrayList;
+import java.util.List;
+
+public class Assignment {
+    private int cartID;
+    private String customerName;
+    private List<Item> items;
+
+    public Assignment(int cartID, String customerName) {
+        this.cartID = cartID;
+        this.customerName = customerName;
+        this.items = new ArrayList<>();
+    }
+
+    public void addItem(String name, double price, int quantity) {
+        items.add(new Item(name, price, quantity));
+        System.out.println("Added item: " + name);
+    }
+
+    public void removeItem(String name) {
+        items.removeIf(item -> item.getName().equals(name));
+        System.out.println("Removed item: " + name);
+    }
+
+    public void calculateTotal() {
+        double total = 0;
+        for (Item item : items) {
+            total += item.getPrice() * item.getQuantity();
+        }
+        System.out.println("Total cost: " + total);
+    }
+
+    class Item {
+        private String name;
+        private double price;
+        private int quantity;
+
+        public Item(String name, double price, int quantity) {
+            this.name = name;
+            this.price = price;
+            this.quantity = quantity;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+    }
+
+    public static void main(String[] args) {
+        Assignment cart1 = new Assignment(101, "Alice");
+        cart1.addItem("Apple", 1.0, 3);
+        cart1.addItem("Banana", 0.5, 6);
+        cart1.calculateTotal();
+        cart1.removeItem("Apple");
+        cart1.calculateTotal();
+    }
+}
+
+qn.4
+interface Transaction {
+    double getAmount();
+    boolean isValid();
+}
+
+class DepositTransaction implements Transaction {
+    private double amount;
+    private double limit;
+
+    public DepositTransaction(double amount, double limit) {
+        this.amount = amount;
+        this.limit = limit;
+    }
+
+    @Override
+    public double getAmount() {
+        return amount;
+    }
+
+    @Override
+    public boolean isValid() {
+        return amount <= limit;
+    }
+}
+
+class WithdrawalTransaction implements Transaction {
+    private double amount;
+    private double limit;
+
+    public WithdrawalTransaction(double amount, double limit) {
+        this.amount = amount;
+        this.limit = limit;
+    }
+
+    @Override
+    public double getAmount() {
+        return amount;
+    }
+
+    @Override
+    public boolean isValid() {
+        return amount <= limit;
+    }
+}
+
+public class Assignment {
+    public static void main(String[] args) {
+        Transaction deposit = new DepositTransaction(500, 1000);
+        System.out.println("Deposit Amount: " + deposit.getAmount());
+        System.out.println("Is Deposit Valid? " + deposit.isValid());
+
+        Transaction withdrawal = new WithdrawalTransaction(1200, 1000);
+        System.out.println("Withdrawal Amount: " + withdrawal.getAmount());
+        System.out.println("Is Withdrawal Valid? " + withdrawal.isValid());
+    }
+}
+
+qn5.
+interface NetworkDevice {
+    String getStatus();
+    boolean isAvailable();
+}
+
+class Router implements NetworkDevice {
+    private String status;
+    private boolean available;
+
+    public Router(String status, boolean available) {
+        this.status = status;
+        this.available = available;
+    }
+
+    @Override
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public boolean isAvailable() {
+        return available;
+    }
+}
+
+class Switch implements NetworkDevice {
+    private String status;
+    private boolean available;
+
+    public Switch(String status, boolean available) {
+        this.status = status;
+        this.available = available;
+    }
+
+    @Override
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public boolean isAvailable() {
+        return available;
+    }
+}
+
+public class Assignment {
+    public static void main(String[] args) {
+        NetworkDevice router = new Router("Online", true);
+        System.out.println("Router Status: " + router.getStatus());
+        System.out.println("Is Router Available? " + router.isAvailable());
+
+        NetworkDevice switchDevice = new Switch("Offline", false);
+        System.out.println("Switch Status: " + switchDevice.getStatus());
+        System.out.println("Is Switch Available? " + switchDevice.isAvailable());
+    }
+}
+
+qn6.
+import java.util.Stack;
+
+public class Assignment {
+    private Stack<String> textStack;
+
+    public Assignment() {
+        textStack = new Stack<>();
+        textStack.push(""); // Initialize with empty text
+    }
+
+    public void addText(String text) {
+        textStack.push(textStack.peek() + text);
+    }
+
+    public void undo() {
+        if (textStack.size() > 1) {
+            textStack.pop();
+        }
+    }
+
+    public String getCurrentText() {
+        return textStack.peek();
+    }
+
+    public static void main(String[] args) {
+        Assignment editor = new Assignment();
+        editor.addText("Hello");
+        System.out.println("Current Text: " + editor.getCurrentText());
+        editor.addText(" World");
+        System.out.println("Current Text: " + editor.getCurrentText());
+        editor.undo();
+        System.out.println("After Undo, Current Text: " + editor.getCurrentText());
+        editor.undo();
+        System.out.println("After Undo, Current Text: " + editor.getCurrentText());
+    }
+}
+
+qn7.
+import java.util.Scanner;
+
+class InvalidStringLengthException extends Exception {
+    public InvalidStringLengthException(String message) {
+        super(message);
+    }
+}
+
+public class Assignment {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a string between 5 and 20 characters: ");
+        String input = scanner.nextLine();
+
+        try {
+            validateStringLength(input);
+            System.out.println("Valid string: " + input);
+        } catch (InvalidStringLengthException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void validateStringLength(String str) throws InvalidStringLengthException {
+        if (str.length() < 5 || str.length() > 20) {
+            throw new InvalidStringLengthException("String length must be between 5 and 20 characters.");
+        }
+    }
+}
+
+qn8.
+import java.util.Scanner;
+
+class InvalidEmailException extends Exception {
+    public InvalidEmailException(String message) {
+        super(message);
+    }
+}
+
+public class Assignment {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a valid email address: ");
+        String email = scanner.nextLine();
+
+        try {
+            validateEmail(email);
+            System.out.println("Valid email: " + email);
+        } catch (InvalidEmailException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void validateEmail(String email) throws InvalidEmailException {
+        if (!email.contains("@") || !email.contains(".")) {
+            throw new InvalidEmailException("Invalid email address. It must contain '@' and '.' characters.");
+        }
+    }
+}
+
+qn9.
+import java.util.Scanner;
+
+public class Assignment {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numbers = new int[5];
+
+        System.out.println("Enter five integer values:");
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+
+        int maxValue = max(numbers);
+        int highestIndex = indexOfHighest(numbers);
+
+        System.out.println("Maximum value: " + maxValue);
+        System.out.println("Index of highest value: " + highestIndex);
+    }
+
+    public static int max(int[] array) {
+        int max = array[0];
+        for (int num : array) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        return max;
+    }
+
+    public static int indexOfHighest(int[] array) {
+        int maxIndex = 0;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > array[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+        return maxIndex;
+    }
+}
+
+qn10.
+import java.util.Scanner;
+
+public class Assignment {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a sentence:");
+        String sentence = scanner.nextLine();
+
+        int vowelCount = countVowels(sentence);
+        int consonantCount = countConsonants(sentence);
+
+        System.out.println("Number of vowels: " + vowelCount);
+        System.out.println("Number of consonants: " + consonantCount);
+    }
+
+    public static int countVowels(String str) {
+        int count = 0;
+        String vowels = "aeiouAEIOU";
+        for (char ch : str.toCharArray()) {
+            if (vowels.indexOf(ch) != -1) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+    public static int countConsonants(String str) {
+        int count = 0;
+        String vowels = "aeiouAEIOU";
+        for (char ch : str.toCharArray()) {
+            if (Character.isLetter(ch) && vowels.indexOf(ch) == -1) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+}
